@@ -24,8 +24,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class CustomHttpComponent {
 
-    private static final Log LOG = LogFactory.getLog(CustomHttpComponent.class);
-
     private static final int MAX_TOTAL = 200;
 
     private static final int DEFAULT_TIMEOUT = 2000;
@@ -104,9 +102,9 @@ public class CustomHttpComponent {
     }
 
     public void shutdown() {
-        LOG.debug("Connection manager is shutting down");
+        System.out.println("Connection manager is shutting down");
         httpClient.getConnectionManager().shutdown();
-        LOG.debug("Connection manager shut down");
+        System.out.println("Connection manager shut down");
     }
 
     /**
@@ -142,7 +140,7 @@ public class CustomHttpComponent {
                     }
                 }
             } catch (InterruptedException ex) {
-                LOG.warn("exception occur, " + ex.getMessage());
+                System.out.println("exception occur, " + ex.getMessage());
             }
         }
 

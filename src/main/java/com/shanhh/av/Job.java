@@ -2,7 +2,11 @@ package com.shanhh.av;
 
 import com.shanhh.av.serial.HuntSerial;
 import com.shanhh.av.serial.Serial;
+import com.shanhh.av.tools.CoverDownloadHandler;
 import com.shanhh.av.tools.CustomHttpComponent;
+import org.apache.http.client.methods.HttpGet;
+
+import java.io.IOException;
 
 /**
  * @author dan.shan
@@ -26,6 +30,13 @@ public class Job implements Runnable {
     @Override
     public void run() {
         System.out.println(this.coverUrl);
+        HttpGet httpGet = new HttpGet(this.coverUrl);
+        try {
+            String filepath = CustomHttpComponent.getInstance().execute(httpGet, new CoverDownloadHandler("/tmp/" + this.coverSavedName));
+            System.out.println("download " + this.coverUrl + " success, " + filepath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public SerialFactory.SerialName getSerialName() {

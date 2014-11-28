@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ExecutorService pool = Executors.newCachedThreadPool();
+        ExecutorService pool = Executors.newFixedThreadPool(30);
 
         SerialFactory factory = SerialFactory.getInstance();
 
