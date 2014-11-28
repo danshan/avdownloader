@@ -1,7 +1,5 @@
-package com.shanhh.av.tools;
+package com.shanhh.av.service.tools;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpHost;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;

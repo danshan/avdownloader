@@ -1,4 +1,4 @@
-package com.shanhh.av.serial;
+package com.shanhh.av.service.serial;
 
 import java.util.Collection;
 

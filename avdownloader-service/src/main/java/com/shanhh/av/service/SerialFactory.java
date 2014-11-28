@@ -1,7 +1,8 @@
-package com.shanhh.av;
+package com.shanhh.av.service;
 
-import com.shanhh.av.serial.ChnSerial;
-import com.shanhh.av.serial.HuntSerial;
+import com.shanhh.av.service.serial.ChnSerial;
+import com.shanhh.av.service.serial.HuntSerial;
+import com.shanhh.av.service.serial.Serial;
 
 /**
  * @author dan.shan
@@ -15,7 +16,7 @@ public class SerialFactory {
         return instance;
     }
 
-    public com.shanhh.av.serial.Serial getSerial(SerialName serial) {
+    public Serial getSerial(SerialName serial) {
         switch (serial) {
             case HUNT:
                 return HuntSerial.getInstance();

@@ -1,9 +1,10 @@
-package com.shanhh.av;
+package com.shanhh.av.service.job;
 
-import com.shanhh.av.serial.HuntSerial;
-import com.shanhh.av.serial.Serial;
-import com.shanhh.av.tools.CoverDownloadHandler;
-import com.shanhh.av.tools.CustomHttpComponent;
+import com.shanhh.av.service.SerialFactory;
+import com.shanhh.av.service.serial.HuntSerial;
+import com.shanhh.av.service.serial.Serial;
+import com.shanhh.av.service.tools.CoverDownloadHandler;
+import com.shanhh.av.service.tools.CustomHttpComponent;
 import org.apache.http.client.methods.HttpGet;
 
 import java.io.IOException;
@@ -12,13 +13,13 @@ import java.io.IOException;
  * @author dan.shan
  * @since 2014-11-27 10:11 PM
  */
-public class Job implements Runnable {
+public class CoverJob implements Runnable {
     private SerialFactory.SerialName serialName;
     private String serialId;
     private String coverUrl;
     private String coverSavedName;
 
-    public Job(SerialFactory.SerialName serialName, String serialId) {
+    public CoverJob(SerialFactory.SerialName serialName, String serialId) {
         this.serialName = serialName;
         this.serialId = serialId;
 

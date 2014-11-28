@@ -1,6 +1,7 @@
-package com.shanhh.av;
+package com.shanhh.av.service;
 
-import com.shanhh.av.serial.Serial;
+import com.shanhh.av.service.job.CoverJob;
+import com.shanhh.av.service.serial.Serial;
 
 import java.util.Collection;
 import java.util.concurrent.ExecutorService;
@@ -22,7 +23,7 @@ public class Main {
             Serial serial = factory.getSerial(name);
             Collection<String> serialIdPack = serial.getSerialIdPack();
             for (String serialId : serialIdPack) {
-                pool.execute(new Job(name, serialId));
+                pool.execute(new CoverJob(name, serialId));
             }
         }
 
