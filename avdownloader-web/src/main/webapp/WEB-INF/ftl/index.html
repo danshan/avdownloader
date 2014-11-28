@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="page-header">
+        <h1>Bootstrap grid examples</h1>
+        <p class="lead">Basic grid layouts to get you familiar with building within the Bootstrap grid system.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="input-group">
+                <input type="text" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Search</button>
+                </span>
+            </div>
+            <!-- /input-group -->
+        </div>
+        <!-- /.col-lg-4 -->
+
+        <div class="col-lg-3 btn-group" role="group" aria-label="action">
+            <div class="btn-group" role="group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="J_showlist" data-toggle="dropdown" aria-expanded="true">
+                    Show
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="showlist">
+                    <#list serialNames as serialName>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">${serialName}</a></li>
+                    </#list>
+                </ul>
+            </div>
+
+            <div class="btn-group" role="group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="J_updatelist" data-toggle="dropdown" aria-expanded="true">
+                    Update
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="updatelist">
+                    <#list serialNames as serialName>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">${serialName}</a></li>
+                    </#list>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/widgets.js"></script>
+</body>
+</html>

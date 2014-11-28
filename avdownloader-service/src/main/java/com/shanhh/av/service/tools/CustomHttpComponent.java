@@ -28,12 +28,6 @@ public class CustomHttpComponent {
 
     private HttpClient httpClient;
 
-    private static CustomHttpComponent instance = new CustomHttpComponent();
-    public static CustomHttpComponent getInstance() {
-        return instance;
-    }
-
-
     /**
      * Instantiates a new Custom http component.
      * 单个站点最大允许连接:200
@@ -41,7 +35,7 @@ public class CustomHttpComponent {
      * 默认连接超时时间:200ms
      * 默认数据接收超时时间:200ms
      */
-    private CustomHttpComponent() {
+    public CustomHttpComponent() {
         PoolingClientConnectionManager connectionManager = new PoolingClientConnectionManager();
         connectionManager.setDefaultMaxPerRoute(MAX_TOTAL);
         connectionManager.setMaxTotal(MAX_TOTAL);
@@ -60,7 +54,7 @@ public class CustomHttpComponent {
      * @param soTimeout      数据接收超时时间
      * @param staleConnCheck 是否进行陈旧连接检查, 如果不开启, 则启动陈旧连接关闭线程
      */
-    private CustomHttpComponent(int maxPerRoute, int maxTotal, int connTimeout, int soTimeout, boolean staleConnCheck) {
+    public CustomHttpComponent(int maxPerRoute, int maxTotal, int connTimeout, int soTimeout, boolean staleConnCheck) {
         PoolingClientConnectionManager connectionManager = new PoolingClientConnectionManager();
         connectionManager.setDefaultMaxPerRoute(maxPerRoute);
         connectionManager.setMaxTotal(maxTotal);

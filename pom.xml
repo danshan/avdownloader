@@ -29,6 +29,8 @@
         <lombok.version>0.11.6</lombok.version>
         <fastjson.veriosn>1.1.41</fastjson.veriosn>
         <guava.version>13.0.1</guava.version>
+        <!--jackson-->
+        <jackson.version>1.8.5</jackson.version>
 
         <!-- Aspectjweaver -->
         <aspectj.version>1.5.4</aspectj.version>
@@ -41,11 +43,13 @@
         <servlet-api.version>2.5</servlet-api.version>
 
         <!-- Spring Framework -->
-        <spring.version>3.0.5.RELEASE</spring.version>
+        <spring.version>3.2.2.RELEASE</spring.version>
 
         <!-- httpClient-->
         <httpclient.version>4.2</httpclient.version>
 
+        <!-- Freemarker -->
+        <freemarker.version>2.3.18</freemarker.version>
     </properties>
 
     <build>
@@ -118,6 +122,17 @@
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
+            <!--jackson-->
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-core-asl</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
 
             <!--aspectjweaver-->
             <dependency>
@@ -173,6 +188,11 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
                 <version>${spring.version}</version>
             </dependency>
@@ -197,6 +217,13 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            <!-- Freemarker -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
