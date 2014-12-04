@@ -6,6 +6,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -22,11 +23,15 @@ public class CoverDownloader implements Runnable {
 
     @Override
     public void run() {
+        if (checkCoverExists(job)) {
+            LOG.info("{} exists, skip job", parseSavedPath(job));
+        }
+
         HttpGet httpGet = new HttpGet(this.job.getCoverUrl());
         try {
             boolean success = httpComponent.execute(httpGet, new CoverDownloadHandler(this.parseFolder(), job.getCoverSavedName()));
             if (success) {
-                LOG.info("download success, {}, {}", this.parseFolder() + job.getCoverSavedName(), this.job.getCoverUrl());
+                LOG.info("download success, {}, {}", this.parseSavedPath(job), this.job.getCoverUrl());
             }
         } catch (HttpResponseException e1) {
             LOG.info(e1.getMessage());
@@ -40,6 +45,15 @@ public class CoverDownloader implements Runnable {
         } else {
             return folder + "/";
         }
+    }
+
+    private String parseSavedPath(CoverJob job) {
+        return this.parseFolder() + job.getCoverSavedName();
+    }
+
+    private boolean checkCoverExists(CoverJob job) {
+        File cover = new File(parseSavedPath(job));
+        return cover.exists();
     }
 
     public CoverJob getJob() {
