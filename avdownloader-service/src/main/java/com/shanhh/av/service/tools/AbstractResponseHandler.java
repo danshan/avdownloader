@@ -5,7 +5,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.ResponseHandler;
-import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
@@ -18,8 +17,7 @@ public abstract class AbstractResponseHandler<T> implements ResponseHandler<T> {
         StatusLine statusLine = response.getStatusLine();
         HttpEntity entity = response.getEntity();
         if (statusLine.getStatusCode() >= HTTP_UNSUCCESS_CODE) {
-            String errMsg = EntityUtils.toString(entity);
-            throw new HttpResponseException(statusLine.getStatusCode(), errMsg);
+            throw new HttpResponseException(statusLine.getStatusCode(), "cover not exists");
         }
         return handle(entity);
     }

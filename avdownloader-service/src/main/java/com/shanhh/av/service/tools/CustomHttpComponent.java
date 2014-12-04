@@ -11,6 +11,7 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.BasicHttpContext;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -20,6 +21,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author jack.zhang
  */
+@Component
 public class CustomHttpComponent {
 
     private static final int MAX_TOTAL = 200;

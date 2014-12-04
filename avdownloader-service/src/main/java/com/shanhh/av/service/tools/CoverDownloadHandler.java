@@ -1,6 +1,8 @@
 package com.shanhh.av.service.tools;
 
 import org.apache.http.HttpEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -10,17 +12,32 @@ import java.io.IOException;
  * @author dan.shan
  * @since 2014-11-28 4:27 PM
  */
-public class CoverDownloadHandler extends AbstractResponseHandler<String> {
+public class CoverDownloadHandler extends AbstractResponseHandler<Boolean> {
 
-    private String filepath;
+    private static final Logger LOG = LoggerFactory.getLogger(CoverDownloadHandler.class);
 
-    public CoverDownloadHandler(String filepath) {
-        this.filepath = filepath;
+    private String folder;
+    private String filename;
+
+    public CoverDownloadHandler(String folder, String filename) {
+        this.folder = folder;
+        this.filename = filename;
+
+        this.checkFolder(this.folder);
+    }
+
+    private void checkFolder(String folder) {
+        File file = new File(folder);
+        if (!file.exists()) {
+            file.mkdirs();
+        } else if (!file.isDirectory()) {
+            LOG.error("{} exists but not a folder.", folder);
+        }
     }
 
     @Override
-    public String handle(HttpEntity entity) throws IOException {
-        File file = new File(filepath);
+    public Boolean handle(HttpEntity entity) throws IOException {
+        File file = new File(this.folder + this.filename);
         FileOutputStream output = new FileOutputStream(file);
         try {
             output = new FileOutputStream(file);
@@ -30,18 +47,17 @@ public class CoverDownloadHandler extends AbstractResponseHandler<String> {
                 output.write(buffer, 0, len);
             }
             output.flush();
+            return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.warn("save cover failed, {}, {}", this.folder + this.filename, e.getMessage());
+            return false;
         } finally {
             try {
                 entity.getContent().close();
                 output.close();
             } catch (Exception e) {
-                e.printStackTrace();
             }
         }
-
-        return this.filepath;
     }
 
 }
