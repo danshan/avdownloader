@@ -22,7 +22,7 @@ import java.util.Collection;
  * @since 2014-11-28 11:11 PM
  */
 @Controller
-@RequestMapping("ajax/serial")
+@RequestMapping("ajax/cover")
 public class UpdateCoverAjaxController extends AjaxController {
 
     @Autowired
@@ -36,23 +36,31 @@ public class UpdateCoverAjaxController extends AjaxController {
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(200);
 
-        SerialName serialName = SerialName.valueOf(name);
+        this.update(SerialName.valueOf(name));
+
+        return resultBean;
+    }
+
+    @RequestMapping(value = "updateAll", method = RequestMethod.GET)
+    @ResponseBody
+    public ResultBean updateAll(HttpServletRequest request, HttpSession session) {
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(200);
+
+        for (SerialName serialName : SerialName.values()) {
+            this.update(serialName);
+        }
+
+        return resultBean;
+    }
+
+    private void update(SerialName serialName) {
         Serial serial = serialFactory.getSerial(serialName);
         Collection<String> serialIds = serial.getSerialIdPack();
         for (String serialId : serialIds) {
             CoverJob job = new CoverJob(serialName, serialId);
             coverService.download(job);
         }
-
-        return resultBean;
-    }
-
-    @RequestMapping(value = "progress", method = RequestMethod.GET)
-    @ResponseBody
-    public ResultBean progress(HttpSession session) {
-        ResultBean resultBean = new ResultBean();
-        resultBean.setCode(200);
-        return resultBean;
     }
 
 }
