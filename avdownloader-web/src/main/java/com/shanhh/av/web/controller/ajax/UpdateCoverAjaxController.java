@@ -32,7 +32,7 @@ public class UpdateCoverAjaxController extends AjaxController {
 
     @RequestMapping(value = "update", method = RequestMethod.GET)
     @ResponseBody
-    public ResultBean update(HttpServletRequest request, HttpSession session, @RequestParam("serialName") String name) {
+    public ResultBean update(HttpServletRequest request, HttpSession session, @RequestParam("name") String name) {
         ResultBean resultBean = new ResultBean();
         resultBean.setCode(200);
 

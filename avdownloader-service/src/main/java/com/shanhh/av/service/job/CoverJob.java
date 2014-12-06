@@ -3,6 +3,7 @@ package com.shanhh.av.service.job;
 import com.shanhh.av.service.serial.HuntSerial;
 import com.shanhh.av.service.serial.Serial;
 import com.shanhh.av.service.serial.SerialName;
+import lombok.Getter;
 
 /**
  * @author dan.shan
@@ -10,9 +11,13 @@ import com.shanhh.av.service.serial.SerialName;
  */
 public class CoverJob {
 
+    @Getter
     private SerialName serialName;
+    @Getter
     private String serialId;
+    @Getter
     private String coverUrl;
+    @Getter
     private String coverSavedName;
 
     public CoverJob(SerialName serialName, String serialId) {
@@ -22,22 +27,6 @@ public class CoverJob {
         Serial serial = HuntSerial.getInstance();
         this.coverUrl = serial.buildCoverUrl(serialId);
         this.coverSavedName = serial.buildCoverSavedName(serialId);
-    }
-
-    public SerialName getSerialName() {
-        return serialName;
-    }
-
-    public String getSerialId() {
-        return serialId;
-    }
-
-    public String getCoverUrl() {
-        return coverUrl;
-    }
-
-    public String getCoverSavedName() {
-        return coverSavedName;
     }
 
 }

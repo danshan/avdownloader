@@ -50,6 +50,9 @@
 
         <!-- Freemarker -->
         <freemarker.version>2.3.18</freemarker.version>
+
+        <!-- Jsoup -->
+        <jsoup.version>1.8.1</jsoup.version>
     </properties>
 
     <build>
@@ -222,6 +225,12 @@
                 <groupId>org.freemarker</groupId>
                 <artifactId>freemarker</artifactId>
                 <version>${freemarker.version}</version>
+            </dependency>
+            <!-- Jsoup -->
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
             </dependency>
 
         </dependencies>

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CoverServiceImpl implements CoverService {
 
-    @Value("${avdownloader.saved.folder}")
+    @Value("${saved.folder}")
     private String savedFolder;
 
     @Autowired

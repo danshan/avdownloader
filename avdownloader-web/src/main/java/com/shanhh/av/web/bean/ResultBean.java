@@ -1,5 +1,6 @@
 package com.shanhh.av.web.bean;
 
+import lombok.Data;
 import org.apache.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -12,6 +13,7 @@ import java.util.List;
  * @author harry.chen
  * @since 13-12-6
  */
+@Data
 public class ResultBean implements Serializable {
 
     private int code;
@@ -29,6 +31,7 @@ public class ResultBean implements Serializable {
 
     /**
      * return result bean will fields incorrect message.
+     *
      * @param result
      * @return
      */
@@ -43,27 +46,4 @@ public class ResultBean implements Serializable {
         return this;
     }
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
 }
